@@ -1,0 +1,462 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Rosa de Saron - Nail Designer</title>
+    <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            background: #ffffff;
+            color: #333;
+            overflow-x: hidden;
+        }
+
+        /* Background Animation */
+        .bg-animation {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 0;
+            pointer-events: none;
+            overflow: hidden;
+        }
+
+        .floating-icon {
+            position: absolute;
+            font-size: 30px;
+            opacity: 0.1;
+            animation: float 15s infinite ease-in-out;
+            color: #5a1e4a;
+        }
+
+        @keyframes float {
+            0%, 100% {
+                transform: translateY(0) rotate(0deg);
+            }
+            50% {
+                transform: translateY(-100vh) rotate(360deg);
+            }
+        }
+
+        .floating-icon:nth-child(1) { left: 10%; animation-delay: 0s; animation-duration: 20s; }
+        .floating-icon:nth-child(2) { left: 25%; animation-delay: 3s; animation-duration: 18s; }
+        .floating-icon:nth-child(3) { left: 40%; animation-delay: 6s; animation-duration: 22s; }
+        .floating-icon:nth-child(4) { left: 60%; animation-delay: 2s; animation-duration: 19s; }
+        .floating-icon:nth-child(5) { left: 75%; animation-delay: 8s; animation-duration: 21s; }
+        .floating-icon:nth-child(6) { left: 90%; animation-delay: 4s; animation-duration: 17s; }
+
+        /* Header */
+        header {
+            background: linear-gradient(135deg, #5a1e4a 0%, #7a2e5a 100%);
+            padding: 20px 5%;
+            box-shadow: 0 4px 20px rgba(90, 30, 74, 0.3);
+            position: relative;
+            z-index: 100;
+        }
+
+        .header-content {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 15px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .rose-icon {
+            font-size: 40px;
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.1); }
+        }
+
+        h1 {
+            font-family: 'Dancing Script', cursive;
+            color: white;
+            font-size: 2.5em;
+            text-align: center;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+        }
+
+        /* Container */
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 40px 20px;
+            position: relative;
+            z-index: 1;
+        }
+
+        /* About Section */
+        .about-section {
+            background: linear-gradient(135deg, #f8f5f7 0%, #ffffff 100%);
+            border-radius: 20px;
+            padding: 40px;
+            margin: 40px 0;
+            box-shadow: 0 8px 32px rgba(90, 30, 74, 0.1);
+            display: flex;
+            gap: 40px;
+            align-items: center;
+            flex-wrap: wrap;
+        }
+
+        .profile-photo {
+            width: 250px;
+            height: 250px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 5px solid #5a1e4a;
+            box-shadow: 0 8px 24px rgba(90, 30, 74, 0.3);
+            flex-shrink: 0;
+        }
+
+        .about-text {
+            flex: 1;
+            min-width: 280px;
+        }
+
+        .about-text h2 {
+            color: #5a1e4a;
+            font-size: 2em;
+            margin-bottom: 20px;
+            font-weight: 600;
+        }
+
+        .about-text p {
+            line-height: 1.8;
+            color: #555;
+            margin-bottom: 15px;
+            text-align: justify;
+        }
+
+        /* Services Section */
+        .services-section {
+            margin: 60px 0;
+        }
+
+        .services-section h2 {
+            text-align: center;
+            color: #5a1e4a;
+            font-size: 2.5em;
+            margin-bottom: 50px;
+            font-weight: 600;
+        }
+
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 30px;
+            margin-bottom: 60px;
+        }
+
+        .service-card {
+            background: white;
+            border-radius: 15px;
+            padding: 30px;
+            box-shadow: 0 6px 24px rgba(90, 30, 74, 0.1);
+            transition: transform 0.3s, box-shadow 0.3s;
+            border-top: 4px solid #5a1e4a;
+        }
+
+        .service-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 12px 32px rgba(90, 30, 74, 0.2);
+        }
+
+        .service-card h3 {
+            color: #5a1e4a;
+            font-size: 1.3em;
+            margin-bottom: 15px;
+            font-weight: 600;
+        }
+
+        .service-card p {
+            color: #666;
+            line-height: 1.6;
+        }
+
+        /* Gallery Section */
+        .gallery-section h2 {
+            text-align: center;
+            color: #5a1e4a;
+            font-size: 2.5em;
+            margin-bottom: 50px;
+            font-weight: 600;
+        }
+
+        .gallery-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            margin-bottom: 60px;
+        }
+
+        .gallery-item {
+            background: white;
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0 6px 24px rgba(90, 30, 74, 0.1);
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+
+        .gallery-item:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 12px 32px rgba(90, 30, 74, 0.2);
+        }
+
+        .gallery-item h3 {
+            background: linear-gradient(135deg, #5a1e4a 0%, #7a2e5a 100%);
+            color: white;
+            padding: 15px;
+            font-size: 1.1em;
+            text-align: center;
+            font-weight: 500;
+        }
+
+        .gallery-item img {
+            width: 100%;
+            height: 300px;
+            object-fit: cover;
+            display: block;
+        }
+
+        /* Footer */
+        footer {
+            background: linear-gradient(135deg, #5a1e4a 0%, #7a2e5a 100%);
+            color: white;
+            padding: 40px 20px;
+            text-align: center;
+            margin-top: 60px;
+        }
+
+        .contact-info {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 30px;
+            flex-wrap: wrap;
+            margin-bottom: 20px;
+        }
+
+        .contact-item {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-size: 1.1em;
+        }
+
+        .whatsapp-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            background: #25D366;
+            color: white;
+            padding: 15px 30px;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 1.1em;
+            transition: transform 0.3s, box-shadow 0.3s;
+            box-shadow: 0 4px 16px rgba(37, 211, 102, 0.4);
+        }
+
+        .whatsapp-btn:hover {
+            transform: scale(1.05);
+            box-shadow: 0 6px 24px rgba(37, 211, 102, 0.6);
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            h1 {
+                font-size: 1.8em;
+            }
+
+            .rose-icon {
+                font-size: 30px;
+            }
+
+            .about-section {
+                padding: 30px 20px;
+                flex-direction: column;
+                text-align: center;
+            }
+
+            .profile-photo {
+                width: 200px;
+                height: 200px;
+            }
+
+            .services-section h2,
+            .gallery-section h2,
+            .about-text h2 {
+                font-size: 1.8em;
+            }
+
+            .gallery-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .contact-info {
+                flex-direction: column;
+                gap: 15px;
+            }
+
+            .floating-icon {
+                font-size: 20px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            h1 {
+                font-size: 1.5em;
+            }
+
+            .container {
+                padding: 20px 15px;
+            }
+
+            .service-card,
+            .about-section {
+                padding: 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Background Animation -->
+    <div class="bg-animation">
+        <div class="floating-icon">💅</div>
+        <div class="floating-icon">✏️</div>
+        <div class="floating-icon">👁️</div>
+        <div class="floating-icon">🤚</div>
+        <div class="floating-icon">🦶</div>
+        <div class="floating-icon">💅</div>
+    </div>
+
+    <!-- Header -->
+    <header>
+        <div class="header-content">
+            <span class="rose-icon">🌹</span>
+            <h1>Rosa de Saron - Nail Designer</h1>
+            <span class="rose-icon">🌹</span>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <div class="container">
+        <!-- About Section -->
+        <section class="about-section">
+            <img src="images/profile.jpg" alt="Regiane Teresa" class="profile-photo">
+            <div class="about-text">
+                <h2>Sobre Mim</h2>
+                <p>Meu nome é <strong>Regiane Teresa</strong>, tenho 45 anos e sou uma profissional em transição de carreira, movida pelo desejo de crescimento, realização pessoal e novos desafios.</p>
+                <p>Atuei por 26 anos na área da limpeza, período em que desenvolvi valores fundamentais como responsabilidade, dedicação, organização e compromisso com a excelência. Essa trajetória contribuiu significativamente para a profissional que sou hoje.</p>
+                <p>Em 2025, decidi dar um novo passo em minha vida profissional e ingressar na área da estética, um segmento que sempre despertou meu interesse e admiração. Recentemente, concluí minha formação em unhas F1, fibra de vidro e tips, iniciando com muito entusiasmo essa nova jornada.</p>
+                <p>Estou em constante aprendizado, buscando aperfeiçoamento técnico e qualidade no atendimento, sempre prezando pelo cuidado, bem-estar e satisfação de cada cliente. Acredito que <strong>nunca é tarde para recomeçar</strong>, e coloco amor e dedicação em tudo o que faço.</p>
+                <p><em>Será um prazer fazer parte da sua rotina de autocuidado.</em></p>
+            </div>
+        </section>
+
+        <!-- Services Section -->
+        <section class="services-section">
+            <h2>Nossos Procedimentos</h2>
+            <div class="services-grid">
+                <div class="service-card">
+                    <h3>💎 Alongamentos Premium</h3>
+                    <p>Unhas longas e resistentes com as técnicas de Fibra de Vidro ou Gel, garantindo um acabamento natural e duradouro.</p>
+                </div>
+                <div class="service-card">
+                    <h3>🛡️ Blindagem e Banho de Gel</h3>
+                    <p>Fortalecimento da unha natural com uma camada protetora que evita quebras e ajuda no crescimento saudável.</p>
+                </div>
+                <div class="service-card">
+                    <h3>✨ Esmaltação em Gel</h3>
+                    <p>Unhas impecáveis, com brilho intenso e cor vibrante por até 20 dias, sem descascar ou perder o brilho.</p>
+                </div>
+                <div class="service-card">
+                    <h3>🎨 Nail Art Exclusiva</h3>
+                    <p>Personalização completa com desenhos manuais, pedrarias e técnicas de encapsulamento para um visual único.</p>
+                </div>
+                <div class="service-card">
+                    <h3>🧼 Saúde e Biossegurança</h3>
+                    <p>Cutilagem técnica e materiais 100% esterilizados, garantindo a saúde das suas mãos e um acabamento perfeito.</p>
+                </div>
+                <div class="service-card">
+                    <h3>👐 Manicure e Pedicure</h3>
+                    <p>Além do tradicional "pé" e "mão" com todo cuidado e atenção que você merece.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Gallery Section -->
+        <section class="gallery-section">
+            <h2>Portfólio dos Trabalhos</h2>
+            <div class="gallery-grid">
+                <div class="gallery-item">
+                    <h3>Alongamento com Francesinha Clássica</h3>
+                    <img src="images/trabalho1.jpg" alt="Alongamento com Francesinha">
+                </div>
+                <div class="gallery-item">
+                    <h3>Esmaltação em Gel Tom Rosê</h3>
+                    <img src="images/trabalho2.jpg" alt="Esmaltação em Gel Rosê">
+                </div>
+                <div class="gallery-item">
+                    <h3>Francesinha com Detalhes de Pedraria</h3>
+                    <img src="images/trabalho3.jpg" alt="Francesinha com Pedraria">
+                </div>
+                <div class="gallery-item">
+                    <h3>Nude com Folha de Ouro</h3>
+                    <img src="images/trabalho4.jpg" alt="Nude com Folha de Ouro">
+                </div>
+                <div class="gallery-item">
+                    <h3>Alongamento Nude com Flores</h3>
+                    <img src="images/trabalho5.jpg" alt="Alongamento Nude com Flores">
+                </div>
+                <div class="gallery-item">
+                    <h3>Alongamento Branco com Brilho</h3>
+                    <img src="images/trabalho6.jpg" alt="Alongamento Branco">
+                </div>
+                <div class="gallery-item">
+                    <h3>Nail Art com Glitter Prata</h3>
+                    <img src="images/trabalho7.jpg" alt="Nail Art com Glitter">
+                </div>
+                <div class="gallery-item">
+                    <h3>Pedicure com Esmaltação em Gel</h3>
+                    <img src="images/trabalho8.jpg" alt="Pedicure em Gel">
+                </div>
+                <div class="gallery-item">
+                    <h3>Alongamento French com Dourado</h3>
+                    <img src="images/trabalho9.jpg" alt="French com Dourado">
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <!-- Footer -->
+    <footer>
+        <div class="contact-info">
+            <div class="contact-item">
+                📍 Vila Santana - Itaquera - Próximo à Universidade Brasil
+            </div>
+        </div>
+        <a href="https://wa.me/5511984856507" class="whatsapp-btn" target="_blank">
+            <span style="font-size: 1.5em;">💬</span>
+            Agende seu Horário: (11) 98485-6507
+        </a>
+        <p style="margin-top: 30px; opacity: 0.8;">© 2025 Rosa de Saron - Nail Designer. Todos os direitos reservados.</p>
+    </footer>
+</body>
+</html>
